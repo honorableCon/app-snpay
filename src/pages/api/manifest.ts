@@ -3,6 +3,7 @@ import { AppManifest } from "@saleor/app-sdk/types";
 
 import packageJson from "../../../package.json";
 import { orderCreatedWebhook } from "./webhooks/order-created";
+import { paymentGatewayInitializeSessionSyncWebhook } from "./webhooks/payment-gateway-initialize-session";
 
 /**
  * App SDK helps with the valid Saleor App Manifest creation. Read more:
@@ -33,6 +34,8 @@ export default createManifestHandler({
          * This can be removed
          */
         "MANAGE_ORDERS",
+        "HANDLE_PAYMENTS",
+        "MANAGE_CHECKOUTS",
       ],
       id: "senpay.saleor.app",
       version: packageJson.version,
@@ -45,7 +48,8 @@ export default createManifestHandler({
        * https://github.com/saleor/saleor-app-sdk/blob/main/docs/saleor-webhook.md
        */
       webhooks: [
-        // orderCreatedWebhook.getWebhookManifest(apiBaseURL)
+        orderCreatedWebhook.getWebhookManifest(apiBaseURL),
+        paymentGatewayInitializeSessionSyncWebhook.getWebhookManifest(apiBaseURL),
       ],
       /**
        * Optionally, extend Dashboard with custom UIs
