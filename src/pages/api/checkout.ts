@@ -16,6 +16,9 @@ export default async function SenpayWebhookHandler(
     const payload = req.body as { checkoutId: string; saleorDomain: string };
     const authData = await saleorApp.apl.get(`https://${payload?.saleorDomain}/graphql/`);
 
+    console.log("======= PAYLOAD ========\n", payload);
+    console.log("\n ===== AUTH DATA ======\n", authData);
+
     if (!authData) {
       res.status(500).json({ error: "Error fetching auth data" });
       return;
