@@ -9,11 +9,11 @@ export const getConfig = (key: string): string => {
 
 const CONFIGS: any = {
   development: {
-    appId: "senpay.saleor.app.test" + randomUUID(),
+    appId: "app.saleor.senpay.test",
     name: "Senpay.test",
   },
   production: {
-    appId: "senpay.saleor.app" + randomUUID(),
+    appId: "senpay.saleor.app",
     name: "Senpay",
   },
 };
